@@ -124,6 +124,14 @@
 // console.log(pokemon[1])
 // console.log(pokemon[2])
 
+//Increase per 1 
+
+// for (let i = 0; i < pokemon.length; i++) {
+//     console.log(`I encountered ${pokemon[i]} pokemon so far`);
+// }
+
+//Increase per 2 
+
 // for (let i = 0; i < pokemon.length; i += 2) {
 //     console.log(`I encountered ${pokemon[i]} pokemon so far`);
 // }
