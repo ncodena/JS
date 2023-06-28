@@ -1,53 +1,59 @@
-//Function declaration
-function functionName(){
- return 'abc'
-}
-//Function invokation
-console.log(functionName())
+//getElementById
 
+const myId = document.getElementById("primaryTitle");
 
-//Function declaration with parameters
-function calculateArea(length, width){
-  return length * width
-}
- //Function invokation with parameters
-console.log(calculateArea(5, 5))
+myId.style.backgroundColor = 'yellow';
+myId.style.color = 'red';
+myId.innerText = ' It is DOM Manipulation';
 
- //Function declaration with default parameters
-function calculateArea(length = 6, width = 10){
-  return length * width
-}
- //Function invokation with default parameters
- console.log(calculateArea(7, 7))
+//getElementsByTagName
+const myButtonsTagName = document.getElementsByTagName("button");
+console.log(myButtonsTagName)
 
- console.log(helloFunctionDeclaration('Núria')) 
- function helloFunctionDeclaration(name = 'John Doe') {
-  return `Hello ${name}`;
- }
- 
- //Anonymous FUNCTIONS
- setTimeout(function() {
-  //console.log('This function is gonna be executed after a delay')
- }, 4000)
+//getElementsByClassName
+const myButtonsClassName = document.getElementsByClassName("contact-button");
+console.log(myButtonsClassName[0])
+const myParagraphs = document.querySelectorAll("p");
 
+//Iterate Node List
+myParagraphs.forEach(selector => 
+  (selector.style.backgroundColor = 'yellow'));
 
- //Arrow functions
- const helloArrow = (name) => {
-  return `Hello ${name}`;
- }
+//Iterate HTML Collection
+Array.from(myButtonsTagName).forEach(selector => 
+    (selector.style.backgroundColor = 'yellow'));
 
- console.log(helloArrow('Núria'))
+//Create new element 
+const myList = document.querySelector(".myList");
 
- const helloArrowAbstracted = (name) => `Hello ${name}`;
- 
-//Recursive functions
+myList.innerHTML += `
+    <li>first element</li> 
+    <li>second element</li>
+`;
 
-const factorial = function (number) {
-  if (number <= 0) {
-    return 1;
-  } else {
-    return (number * factorial(number - 1));
-  }
- };
- 
- console.log(factorial(6));
+const listElement = document.createElement("li");
+listElement.innerText = 'hello from js';
+listElement.classList = 'classFromJs';
+listElement.style.fontWeight = 'bold';
+
+//Append new element to parent 
+myList.appendChild(listElement);
+
+//Delete new element 
+listElement.remove()
+
+//Event listeners
+const myButton = document.querySelector('button');
+
+myButton.addEventListener("click", () => {
+    console.log('clicked');
+})
+
+myButton.addEventListener("mouseover", () => {
+    myButton.innerText = 'Click me';
+})
+
+myButton.addEventListener("mouseout", () => {
+    myButton.innerText = 'Contact button';
+})
+
