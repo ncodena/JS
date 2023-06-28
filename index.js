@@ -10,18 +10,20 @@ myId.innerText = ' It is DOM Manipulation';
 const myButtonsTagName = document.getElementsByTagName("button");
 console.log(myButtonsTagName)
 
-//getElementsByClassName
-const myButtonsClassName = document.getElementsByClassName("contact-button");
-console.log(myButtonsClassName[0])
-const myParagraphs = document.querySelectorAll("p");
-
-//Iterate Node List
-myParagraphs.forEach(selector => 
-  (selector.style.backgroundColor = 'yellow'));
+//getElementsByClassName => HTML Collection
+const myParagraphsClassName = document.getElementsByClassName("container");
+console.log(myParagraphsClassName[0])
 
 //Iterate HTML Collection
 Array.from(myButtonsTagName).forEach(selector => 
     (selector.style.backgroundColor = 'yellow'));
+
+//querySelectorAll
+const myParagraphs = document.querySelectorAll("p");
+console.log(myParagraphs[0])
+//Iterate Node List => querySelectorAll
+myParagraphs.forEach(selector => 
+  (selector.style.backgroundColor = 'yellow'));
 
 //Create new element 
 const myList = document.querySelector(".myList");
