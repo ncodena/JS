@@ -270,7 +270,7 @@ const inventors = [
   const family = [
     { name: "Lily", year: 2009 },
     { name: "Leah", year: 2011 },
-    { name: "Liv", year: 2000 },
+    { name: "LIv", year: 2000 },
     { name: "lydia", year: 2015 },
   ];
 
