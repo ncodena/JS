@@ -59,3 +59,22 @@ myButton.addEventListener("mouseout", () => {
     myButton.innerText = 'Contact button';
 })
 
+//Form submission
+
+const form = document.querySelector("form");
+
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.dir(form, 'form');
+    // const nameInput = form.elements[0];
+    // console.log(nameInput);
+    const nameInputName = form.elements["surname"];
+    console.log(nameInputName);
+    if(nameInputName.value.trim() === ""){
+        alert("Form is empty. Please enter a value")
+    } else {
+        console.log(`The form has been submitted ${nameInputName.value}`);
+        form.submit();
+    }
+    
+})
