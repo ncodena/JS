@@ -64,7 +64,6 @@ const editFunction = (event) => {
     } else if(event.target.classList.contains("delete-button")) {
         event.target.parentNode.remove();
     } else if(event.target.classList.contains("tick-button")){
-        event.target.parentNode.classList.toggle("completed");
     }
 
 };
