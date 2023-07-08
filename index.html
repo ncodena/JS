@@ -2,20 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <!-- <script async src="index.js"></script> -->
-    <title>ToDo</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>ToDo list</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./index.js" defer></script>
   </head>
   <body>
-    <form>
-      <input type="text" placeholder="Enter a task" />
-      <button class="add" type="submit">Add</button>
-    </form>
+    <header>
+      <h1>To Do List</h1>
+    </header>
 
-    <div id="tasks"></div>
+    <main>
+      <div class="filter">
+        <form>
+          <input type="text" name="items" id="txt" />
+          <button type="submit">ADD</button>
+        </form>
+      </div>
 
-    <script src="index.js"></script>
+      <ul id="listItems"></ul>
+    </main>
   </body>
 </html>
