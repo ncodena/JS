@@ -1,71 +1,52 @@
-//const input = document.querySelector('input');
-const form = document.querySelector("form");
-const list = document.querySelector("#listItems");
-const itemsInput = form.elements['items'];
-const inputText = document.querySelector('#txt');
+const forms = document.querySelectorAll("form");
 
-const submitFunction = (event) => {
-    event.preventDefault();
-    const itemsInput = form.elements['items'];
+forms.forEach((form) =>
+  form.addEventListener("submit", (e) => e.preventDefault())
+);
 
-    if (itemsInput.value.trim() === "") {
-        alert("There is not input. Please enter a value before submitting");
-    } else {
-            //item
-           let newItem = document.createElement('li');
-           let newItemText = document.createElement('div');
+// Here are all DOM elements you need
 
-           let newItemContent = document.createTextNode(`${itemsInput.value}`);
-           newItemText.appendChild(newItemContent);
-           newItem.appendChild(newItemText);
-           newItem.setAttribute('class', `item`);
-           list.appendChild(newItem);
-            //edit
-            let editButton = document.createElement("BUTTON");
-            let editText = document.createTextNode('Edit');
-            editButton.appendChild(editText);
-            editButton.setAttribute("class", `edit-button` );
-            newItem.appendChild(editButton); 
-            //done
-            let doneButton = document.createElement("BUTTON");
-            let doneText = document.createTextNode('Done');
-            doneButton.appendChild(doneText);
-            doneButton.setAttribute("class", `done-button`);
-            newItem.appendChild(doneButton); 
-            //tick
-            let tickButton = document.createElement("INPUT");
-            tickButton.setAttribute("type", "checkbox")
-            tickButton.setAttribute("class", `tick-button`);
-            newItem.appendChild(tickButton);
-            //delete
-            let deleteButton = document.createElement("BUTTON");
-            let buttonText = document.createTextNode('Delete');
-            deleteButton.appendChild(buttonText);
-            deleteButton.setAttribute("class", `delete-button`);
-            newItem.appendChild(deleteButton); 
-    }
-}
+const resultsDiv = document.querySelector(".results");
+const keyInput = document.querySelector(".key");
+const valueInput = document.querySelector(".value");
+const removeInput = document.querySelector(".remove");
+const storeBtn = document.querySelector(".store");
+const showBtn = document.querySelector(".show");
+const clearOneBtn = document.querySelector(".clearOne");
+const clearAllBtn = document.querySelector(".clearAll");
 
-form.addEventListener('submit', submitFunction);
-//Conditional to check if you are clicking editButton => event.target.classList.contains("edit-button")
-const editFunction = (event) => {
-    console.log('event', event)
-    event.preventDefault();
-    if(event.target.classList.contains("edit-button")) {
-        const listItem = event.target.parentNode;
-        const listItemText = listItem.firstChild;
-        listItemText.contentEditable = true;
-        listItemText.style.backgroundColor = "#dddbdb";
-    } else if(event.target.classList.contains("done-button")){
-        const listItem = event.target.parentNode;
-        const listItemText = listItem.firstChild;
-        listItemText.contentEditable = false;
-        listItemText.style.backgroundColor = "#ffffff";
-    } else if(event.target.classList.contains("delete-button")) {
-        event.target.parentNode.remove();
-    } else if(event.target.classList.contains("tick-button")){
-    }
 
-};
+//console.log(localStorage)
 
-listItems.addEventListener('click', editFunction);
+//Add items to localStorage with the "Store me" button
+storeBtn.addEventListener("click", () => {
+    const key = keyInput.value;
+    const value = valueInput.value;
+    localStorage.setItem(key, value);
+    keyInput.value = "";
+    valueInput.value = "";
+})
+
+//Remove one specific item from localStorage with the "Clear One" button
+clearOneBtn.addEventListener("click", () => {
+    const key = removeInput.value;
+    localStorage.removeItem(key);
+    removeInput.value = "";
+})
+
+//Show all items in localStorage with the "Show Storage" button
+showBtn.addEventListener("click", () => {
+   for(let i = 0; i < localStorage.length; i++){
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    const item = document.createElement("p");
+    item.textContent = `${key}: ${value}`;
+    resultsDiv.appendChild(item);
+   }
+})
+
+//Clear localStorage with the "Clear All" button
+
+clearAllBtn.addEventListener("click", () => {
+    localStorage.clear();
+ })
