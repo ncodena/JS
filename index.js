@@ -1,52 +1,65 @@
-const forms = document.querySelectorAll("form");
+//Create a class that represents a cat. It should have properties for tiredness, hunger, loneliness, and happiness
 
-forms.forEach((form) =>
-  form.addEventListener("submit", (e) => e.preventDefault())
-);
+class Cat {
+    constructor(name){
+        this.name = name;
+        this.tiredness = 10;
+        this.hunger = 0;
+        this.loneliness = 0;
+        this.happiness = 0;
+    }
 
-// Here are all DOM elements you need
+    //Next, write methods that increase and decrease those properties. Call them something that actually represents what would increase or decrease these things, like “feed”, “sleep”, or “pet”.
+    feed(amount){
 
-const resultsDiv = document.querySelector(".results");
-const keyInput = document.querySelector(".key");
-const valueInput = document.querySelector(".value");
-const removeInput = document.querySelector(".remove");
-const storeBtn = document.querySelector(".store");
-const showBtn = document.querySelector(".show");
-const clearOneBtn = document.querySelector(".clearOne");
-const clearAllBtn = document.querySelector(".clearAll");
+    // if(this.hunger > amount){
+    //     return this.hunger -= amount;
+    // }
 
+    return this.hunger = Math.max(0, this.hunger -= amount)
+     
+    }
 
-//console.log(localStorage)
+    // feed(hunger, happiness){
+    //     this.hunger -= hunger;
+    //     this.happiness += happiness;
+    // }
+    sleep(hours) {
+        //I added not also cecreasing the tiredness but also increasing hunger (it happens after a nap right?)
+        return (this.tiredness = Math.max(0, this.tiredness - hours), this.hunger++);
+    }
 
-//Add items to localStorage with the "Store me" button
-storeBtn.addEventListener("click", () => {
-    const key = keyInput.value;
-    const value = valueInput.value;
-    localStorage.setItem(key, value);
-    keyInput.value = "";
-    valueInput.value = "";
-})
+    //Last, write a method that prints out the cat’s status in each area. (Be creative e.g. Paws is really hungry, Paws is VERY happy.)
+    printStatus(){
+        console.log('Cat status');
+        console.log(`Tiredness: ${this.getTiredness()}`);
+        console.log(`Hunger: ${this.getHungerStatus()}`);
+        // console.log();
+    }
 
-//Remove one specific item from localStorage with the "Clear One" button
-clearOneBtn.addEventListener("click", () => {
-    const key = removeInput.value;
-    localStorage.removeItem(key);
-    removeInput.value = "";
-})
+    getTiredness(){
+        if(this.tiredness === 0){
+            return `${this.name} is not sleepy`;
+        } else if(this.tiredness > 0 && this.tiredness < 4){
+            return `${this.name} needs to sleep a little bit`;
+        } else {
+            return `${this.name} is exhausted`;
+        }
+    }
 
-//Show all items in localStorage with the "Show Storage" button
-showBtn.addEventListener("click", () => {
-   for(let i = 0; i < localStorage.length; i++){
-    const key = localStorage.key(i);
-    const value = localStorage.getItem(key);
-    const item = document.createElement("p");
-    item.textContent = `${key}: ${value}`;
-    resultsDiv.appendChild(item);
-   }
-})
+    getHungerStatus() {
+      if (this.hunger === 0) {
+        return "Paws is full";
+      } else if (this.hunger <= 5) {
+        return "Paws is a bit hungry";
+      } else {
+        return "Paws is really hungry!";
+      }
+    }
 
-//Clear localStorage with the "Clear All" button
+}
 
-clearAllBtn.addEventListener("click", () => {
-    localStorage.clear();
- })
+const myCat = new Cat('Candy');
+myCat.feed(2);
+myCat.sleep(5);
+console.log(myCat)

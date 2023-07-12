@@ -6,64 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
     <script async src="index.js"></script>
-    <title>Local Storage crash course</title>
+    <title>The Cat</title>
   </head>
   <body>
     <div class="block">
-      <h1>Local Storage crash course</h1>
-      Check out your local storage in the Application tab of the browser's
-      console (Or the Storage tab if you're on Firefox)!
-      <br />
-      <br />
-      The Web Storage API allows you to save {key: value} pairs in your
-      browser's cache. Local Storage data persists after the leaving the website
-      (it is bound to the url, so whenever you return to the same url your
-      localStorage will load up all data again). It is a property of your Window
-      global object, like the document.
-      <br />
-      <br />
-      For this exercise you'll have to:
-      <ol>
-        <li>Add items to localStorage with the "Store me" button</li>
+      <h1>The Cat</h1>
+      <ul>
         <li>
-          Remove one specific item from localStorage with the "Clear One" button
+          Create a class that represents a cat. It should have properties for
+          tiredness, hunger, loneliness, and happiness
         </li>
-        <li>Show all items in localStorage with the "Show Storage" button</li>
-        <li>Clear localStorage with the "Clear All" button</li>
-      </ol>
-      <br />
-      <div class="linkWrapper">
-        <a
-          target="_blank"
-          href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"
-          >Help</a
-        >
-        <a
-          target="_blank"
-          href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API"
-          >Help</a
-        >
-      </div>
-    </div>
-
-    <div class="block results">
-      <form>
-        <input class="key" name="key" placeholder="Key name" />
-        <input class="value" name="value" placeholder="Value of key" />
-        <button class="store">Store me!</button>
-      </form>
-      <hr />
-
-      <form>
-        <input class="remove" name="value" placeholder="Key to remove" />
-        <button class="clearOne">Clear one key!</button>
-      </form>
-      <hr />
-
-      <button class="show">Show storage!</button>
-      <button class="clearAll">Clear all storage!</button>
-      <hr />
-      Display the data from Local Storage here
+        <li>
+          Next, write methods that increase and decrease those properties. Call
+          them something that actually represents what would increase or
+          decrease these things, like “feed”, “sleep”, or “pet”.
+        </li>
+        <li>
+          Last, write a method that prints out the cat’s status in each area.
+          (Be creative e.g. Paws is really hungry, Paws is VERY happy.)
+        </li>
+        <li>
+          Bonus: Make the functions take arguments that increase or decrease
+          arbitrary amounts
+        </li>
+      </ul>
     </div>
   </body>
 </html>
