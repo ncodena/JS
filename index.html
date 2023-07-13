@@ -1,35 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <title>Chat</title>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="index.css" />
     <script async src="index.js"></script>
-    <title>The Cat</title>
   </head>
+
   <body>
-    <div class="block">
-      <h1>The Cat</h1>
-      <ul>
-        <li>
-          Create a class that represents a cat. It should have properties for
-          tiredness, hunger, loneliness, and happiness
-        </li>
-        <li>
-          Next, write methods that increase and decrease those properties. Call
-          them something that actually represents what would increase or
-          decrease these things, like “feed”, “sleep”, or “pet”.
-        </li>
-        <li>
-          Last, write a method that prints out the cat’s status in each area.
-          (Be creative e.g. Paws is really hungry, Paws is VERY happy.)
-        </li>
-        <li>
-          Bonus: Make the functions take arguments that increase or decrease
-          arbitrary amounts
-        </li>
-      </ul>
+    <div class="iphone">
+      <div class="border">
+        <div class="responsive-html5-chat">
+          <form class="chat">
+            <span></span>
+            <div class="messages"></div>
+            <input type="text" placeholder="Your message" />
+            <input type="submit" value="Send" />
+          </form>
+        </div>
+      </div>
     </div>
+
+    <div class="typing">You're typing</div>
   </body>
 </html>

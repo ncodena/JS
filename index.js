@@ -1,65 +1,86 @@
-//Create a class that represents a cat. It should have properties for tiredness, hunger, loneliness, and happiness
+function addMessage(message, me = true) {
+  const template = `<div class="message">
+    <div class="${
+      me ? "myMessage" : "fromThem"
+    }" data-date="${new Date().toLocaleTimeString()}">
+      <p>${message}</p>
+      <date> ${new Date().toLocaleTimeString()} </date>
+    </div>
+  </div>`;
 
-class Cat {
-    constructor(name){
-        this.name = name;
-        this.tiredness = 10;
-        this.hunger = 0;
-        this.loneliness = 0;
-        this.happiness = 0;
-    }
-
-    //Next, write methods that increase and decrease those properties. Call them something that actually represents what would increase or decrease these things, like “feed”, “sleep”, or “pet”.
-    feed(amount){
-
-    // if(this.hunger > amount){
-    //     return this.hunger -= amount;
-    // }
-
-    return this.hunger = Math.max(0, this.hunger -= amount)
-     
-    }
-
-    // feed(hunger, happiness){
-    //     this.hunger -= hunger;
-    //     this.happiness += happiness;
-    // }
-    sleep(hours) {
-        //I added not also cecreasing the tiredness but also increasing hunger (it happens after a nap right?)
-        return (this.tiredness = Math.max(0, this.tiredness - hours), this.hunger++);
-    }
-
-    //Last, write a method that prints out the cat’s status in each area. (Be creative e.g. Paws is really hungry, Paws is VERY happy.)
-    printStatus(){
-        console.log('Cat status');
-        console.log(`Tiredness: ${this.getTiredness()}`);
-        console.log(`Hunger: ${this.getHungerStatus()}`);
-        // console.log();
-    }
-
-    getTiredness(){
-        if(this.tiredness === 0){
-            return `${this.name} is not sleepy`;
-        } else if(this.tiredness > 0 && this.tiredness < 4){
-            return `${this.name} needs to sleep a little bit`;
-        } else {
-            return `${this.name} is exhausted`;
-        }
-    }
-
-    getHungerStatus() {
-      if (this.hunger === 0) {
-        return "Paws is full";
-      } else if (this.hunger <= 5) {
-        return "Paws is a bit hungry";
-      } else {
-        return "Paws is really hungry!";
-      }
-    }
-
+  document.querySelector(".chat .messages").innerHTML += template;
 }
 
-const myCat = new Cat('Candy');
-myCat.feed(2);
-myCat.sleep(5);
-console.log(myCat)
+function typing() {
+  document.querySelector(".typing").classList.toggle("active");
+  setTimeout(() => {
+    document.querySelector(".typing").classList.toggle("active");
+  }, 1000);
+}
+
+typing();
+addMessage("Hi!", false);
+addMessage("In this exercise you will work with events in JS", false);
+addMessage("Let's go!");
+// Call the function initially
+addEventListenersToMessages();
+
+/**
+ * Listen to the submit of the form and add a new message
+ * with addMessage()
+ */
+
+// Code here
+
+document.querySelector(".chat").addEventListener("submit", (event) => {
+  event.preventDefault();
+  const input = document.querySelector("input[type='text']");
+  const message = input.value;
+  if(input.value.trim() == ""){
+    alert("please enter a message")
+  } else {
+    addMessage(message, true);
+    input.value = "";
+
+    //Call the function to add event listeners to the updated messages
+    addEventListenersToMessages();
+
+  }
+})
+
+/**
+ * Listen to the click on each message and create an alert
+ * with the date from 'data-date'
+ * https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
+ */
+
+// Code here
+
+function addEventListenersToMessages() {
+  const messages = document.querySelectorAll(".myMessage");
+  messages.forEach((message) => {
+    message.addEventListener("click", function () {
+      const date = this.getAttribute("data-date");
+      alert(date);
+    });
+  });
+}
+
+// const messages = document.querySelectorAll(".chat .messages .message");
+// messages.forEach((message) => {
+//   message.addEventListener("click", () => {
+//     const date = document.querySelector("[data-date]").getAttribute("data-date");
+//     console.dir(date, 'date')
+//     alert(date);
+//   })
+// })
+
+
+
+/**
+ * Listen to every Keydown (from the keyboard) in the input and call
+ * the function typing()
+ */
+// Code here
+const input = document.querySelector("input[type='text']");
+input.addEventListener("keydown", typing )
