@@ -1,86 +1,137 @@
-function addMessage(message, me = true) {
-  const template = `<div class="message">
-    <div class="${
-      me ? "myMessage" : "fromThem"
-    }" data-date="${new Date().toLocaleTimeString()}">
-      <p>${message}</p>
-      <date> ${new Date().toLocaleTimeString()} </date>
-    </div>
-  </div>`;
 
-  document.querySelector(".chat .messages").innerHTML += template;
-}
+//// UPDATED JS
 
-function typing() {
-  document.querySelector(".typing").classList.toggle("active");
-  setTimeout(() => {
-    document.querySelector(".typing").classList.toggle("active");
-  }, 1000);
-}
 
-typing();
-addMessage("Hi!", false);
-addMessage("In this exercise you will work with events in JS", false);
-addMessage("Let's go!");
-// Call the function initially
-addEventListenersToMessages();
-
-/**
- * Listen to the submit of the form and add a new message
- * with addMessage()
- */
-
-// Code here
-
-document.querySelector(".chat").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const input = document.querySelector("input[type='text']");
-  const message = input.value;
-  if(input.value.trim() == ""){
-    alert("please enter a message")
-  } else {
-    addMessage(message, true);
-    input.value = "";
-
-    //Call the function to add event listeners to the updated messages
-    addEventListenersToMessages();
-
+class ToDoManager {
+  constructor(){
+      this.taskArray = [];
+      this.taskList = document.querySelector('#task-list');
+      this.form = document.querySelector('#task-form');
+      this.input = document.querySelector('#task-input');
+      this.form.addEventListener('submit', this.addTask.bind(this));  
   }
-})
 
-/**
- * Listen to the click on each message and create an alert
- * with the date from 'data-date'
- * https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes
- */
+addTask(event){
+  event.preventDefault();
+  if (this.input.value.trim() === "") {
+      alert("Please Enter a Task");
+  } else {
+       const newTaskTemplate = `
+      <li>
+        <div class="taskElement">${this.input.value}</div>
+        <button class="edit-button">Add</button>
+      </li>
+    `;
+    this.taskList.innerHTML += newTaskTemplate;
+    this.input.value = "";
 
-// Code here
+    const toDoItem = new TaskItem(this.input.value);
+    this.taskArray.push(toDoItem);
 
-function addEventListenersToMessages() {
-  const messages = document.querySelectorAll(".myMessage");
-  messages.forEach((message) => {
-    message.addEventListener("click", function () {
-      const date = this.getAttribute("data-date");
-      alert(date);
-    });
-  });
+};
 }
+}
+//this.form.addEventListener('submit', this.addTask.bind(this));
 
-// const messages = document.querySelectorAll(".chat .messages .message");
-// messages.forEach((message) => {
-//   message.addEventListener("click", () => {
-//     const date = document.querySelector("[data-date]").getAttribute("data-date");
-//     console.dir(date, 'date')
-//     alert(date);
-//   })
+class TaskItem{
+  constructor(taskName){
+      this.taskName = taskName;
+      //this.#taskDone = false;
+  }
+
+editTask(value){
+  this.taskName = value;
+}
+  };
+
+
+const toDo = new ToDoManager();
+const newTask = new TaskItem()
+
+
+
+// form.addEventListener('submit', (event) => {
+//     event.preventDefault();
+
+//     if (input.value.trim() === "") {
+//         alert("Please Enter a Task");
+//     } else {
+//         const newTask = document.createElement('li')
+//         newTask.innerText = input.value;
+//         // newTask.classList.add('div'); //CSS styling
+//         taskList.appendChild(newTask);
+//         input.value = "";
+
+//         const newTaskActions = document.querySelector('ul'); //creates and stores task actions(delete, edit buttons)
+//         // newTaskActions.classList.add('actions'); // CSS styling
+//         newTaskActions.appendChild(newTask);
+
+
+//         // creating DELETE button
+//         const deleteButton = document.createElement('button');
+//         deleteButton.innerText = 'DELETE';
+//         newTask.appendChild(deleteButton);
+//         deleteButton.addEventListener('click', deleteTask) 
+
+//         // function that executes DELETE
+//         function deleteTask(){
+//             taskList.removeChild(newTask);
+          
+//         }  
+
+//         // creating EDIT button
+//         const editButton = document.createElement('button');
+//         editButton.innerText = 'EDIT';
+//         newTask.appendChild(editButton);
+//         let inputTask;
+//         editButton.addEventListener('click', () => {
+//             if(editButton.innerText === 'EDIT'){
+//                 editButton.innerText = 'SAVE' 
+//                 inputTask = document.createElement('input');
+//                 newTask.appendChild(inputTask) 
+//                 } else {
+//                     if(editButton.innerText === 'SAVE'){
+//                         if (inputTask.value.trim() === "") {
+//                             alert("Please edit a Task");
+//                         } else{
+//                             console.log(inputTask.value);
+//                             newTask.innerText = inputTask.value;
+//                             inputTask.remove();
+//                             editButton.innerText = 'EDIT'; 
+//                             newTask.appendChild(deleteButton);
+//                             newTask.appendChild(editButton);
+//                         }   
+//                     }
+//                 }
+                             
+//              }) 
+                  
+// }
+
 // })
 
 
 
-/**
- * Listen to every Keydown (from the keyboard) in the input and call
- * the function typing()
- */
-// Code here
-const input = document.querySelector("input[type='text']");
-input.addEventListener("keydown", typing )
+// const checkbox = document.querySelectorAll('.checkbox');
+
+//             	let unchecked = true;
+
+//                 checkbox.forEach((checkbox)=>{
+//                 checkbox.addEventListener("click", ()=>{
+//                      if (unchecked){checkbox.src = "imgs/square-check-regular.svg";
+//                     } else {
+//                      checkbox.src = "imgs/square-regular.svg"
+//                      }
+//                      unchecked = !unchecked
+//         });
+//         });
+
+
+      // paragraph.addEventListener('click', () => {
+      //     paragraph.style.textDecoration = 'line-through';
+      // })
+
+
+      // paragraph.addEventListener('dblclick', () => {
+      //     task.removeChild(paragraph);
+      // })
